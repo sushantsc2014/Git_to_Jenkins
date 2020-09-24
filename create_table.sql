@@ -1,2 +1,1 @@
-create table t1 (id int)
-create table t2 (id int)
+create table git_to_postgres(success int)
