@@ -9,7 +9,6 @@ steps:
         
   # Step 2: Pull the code from the feature1 branch
   - name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
     args:
       - clone
       - --single-branch
