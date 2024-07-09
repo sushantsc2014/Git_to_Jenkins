@@ -5,7 +5,7 @@ steps:
     args:
       - '-c'
       - |
-        rm -rf /    workspace/*
+        rm -rf /workspace/* /workspace/.[!.]* /workspace/..?*
         
   # Step 2: Pull the code from the feature1 branch
   - name: 'gcr.io/cloud-builders/git'
