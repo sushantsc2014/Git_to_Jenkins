@@ -5,15 +5,18 @@ steps:
     args:
       - '-c'
       - |
-        rm -rf ./*
+        rm -rf /    workspace/*
         
   # Step 2: Pull the code from the feature1 branch
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: 'bash'
     args:
-      - '-c'
-      - |
-        git clone --single-branch --branch feature1 https://github.com/sushantsc2014/Git_to_Jenkins.git .
+      - clone
+      - --single-branch
+      - --branch
+      - feature1
+      - https://github.com/sushantsc2014/Git_to_Jenkins.git
+      - /workspace/repo
 
   # Step 3: Copy the files to the GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
