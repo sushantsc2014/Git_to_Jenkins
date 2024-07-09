@@ -1,5 +1,12 @@
 steps:
-  # Step 1: Pull the code from the feature1 branch
+  # Step 1: Remove existing files in the current directory
+  - name: 'gcr.io/cloud-builders/bash'
+    args:
+      - '-c'
+      - |
+        rm -rf ./*
+        
+  # Step 2: Pull the code from the feature1 branch
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: 'bash'
     args:
@@ -7,7 +14,7 @@ steps:
       - |
         git clone --single-branch --branch feature1 https://github.com/sushantsc2014/Git_to_Jenkins.git .
 
-  # Step 2: Copy the files to the GCS bucket
+  # Step 3: Copy the files to the GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
     args:
       [
