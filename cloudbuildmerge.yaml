@@ -21,6 +21,8 @@ steps:
         git commit -m "merged feature1 with master branch"
         echo "###### pushing next step"
         git push https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
+        echo "PWD now is$$$$$$$$$$$$$$$$$$$$$$$"
+        pwd
     id: 'To check conflicts and merge with Master branch'
 
   # Step 2: Remove master folder
