@@ -4,7 +4,7 @@ steps:
   args:
   - '-c'
   - |
-    GITHUB_PAT=$(gcloud secrets versions access latest --secret="github-pat")
+    GITHUB_PAT=${_GITHUB_PAT}
     git config --global credential.helper store
     echo "https://username:${GITHUB_PAT}@github.com" > ~/.git-credentials
     
