@@ -1,24 +1,17 @@
 pipeline {
 	agent any
+	environment {
+		LABS = credentials('labcreds')
+	}
 	stages {
-		stage('Build') {
-			steps {
-				echo "build completed successful"
-			}
-		}
-		stage('Test') {
-			steps {
-				echo "test completed successful"
-			}
-		}
 		stage('Package') {
 			steps {
-				echo "package completed successful"
+				sh 'zip -r retailproject.zip .'
 			}
 		}
 		stage('Deploy') {
 			steps {
-				echo "deploy completed successful"
+				sh 'sshpass -p $LABS_PSW scp -o StrictHostKeyChecking=no -r . 	$LABS_USR@g01.itversity.com:/home/itv012984/retailproject/'
 			}
 		}
 	}
