@@ -4,9 +4,8 @@ steps:
   args:
   - '-c'
   - |
-    git clone https://github.com/sushantsc2014/Git_to_Jenkins.git
-    cd Git_to_Jenkins
-    git config --global user.email "sushantsc2014@gmail.com"    
+    git clone git clone git@github.com:sushantsc2014/Git_to_Jenkins.git
+    cd Git_to_Jenkins   
     git checkout feature1
     git checkout master
     echo "###### git pull next command to execute"
