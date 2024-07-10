@@ -1,56 +1,59 @@
 steps:
-# Step 1: Merge feature1 branch with MASTER
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    git config --global credential.helper store
-    echo "https://username:${_GITHUB_PAT}@github.com" > ~/.git-credentials
-    git clone https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
-    cd Git_to_Jenkins
-    git config --global user.email "xyz@cloudshell.com"    
-    git checkout feature1
-    git checkout master
-    echo "###### git pull next command to execute"
-    git pull origin master
-    echo "merging"
-    git merge feature1
-    git add .
-    echo "###### merging next step"
-    git commit -m "merged feature1 with master branch"
-    echo "###### pushing next step"
-    git push https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
-  id: 'To check conflicts and merge with Master branch'
+    # Step 1: Merge feature1 branch with MASTER
+    - name: gcr.io/cloud-builders/gcloud
+      entrypoint: 'bash'
+      args:
+      - '-c'
+      - |
+        git config --global credential.helper store
+        echo "https://username:${_GITHUB_PAT}@github.com" > ~/.git-credentials
+        git clone https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
+        cd Git_to_Jenkins
+        git config --global user.email "xyz@cloudshell.com"    
+        git checkout feature1
+        git checkout master
+        echo "###### git pull next command to execute"
+        git pull origin master
+        echo "merging"
+        git merge feature1
+        git add .
+        echo "###### merging next step"
+        git commit -m "merged feature1 with master branch"
+        echo "###### pushing next step"
+        git push https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
+      id: 'To check conflicts and merge with Master branch'
 
-# Step 2: Clone master branch again
-- name: 'gcr.io/cloud-builders/gcloud'
-entrypoint: 'bash'
-args:
-  - '-c'
-  - |
-    rm -rf /git_master/* /git_master/.[!.]* /git_master/..?*
-        
-# Step 2: Pull the code from the feature1 branch
-- name: 'gcr.io/cloud-builders/git'
-args:
-  - clone
-  - --single-branch
-  - --branch
-  - master
-  - https://github.com/sushantsc2014/Git_to_Jenkins.git
-  - /git_master/
+    # Step 2: Clone master branch again
+    - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        rm -rf /git_master/* /git_master/.[!.]* /git_master/..?*
+      id: 'remove master folder'
+            
+    # Step 3: Pull the code from the feature1 branch
+    - name: 'gcr.io/cloud-builders/git'
+    args:
+      - clone
+      - --single-branch
+      - --branch
+      - master
+      - https://github.com/sushantsc2014/Git_to_Jenkins.git
+      - /git_master/
+      id: 'clone master '
 
-# Step 3: Copy the files to the GCS bucket
-- name: 'gcr.io/cloud-builders/gsutil'
-args:
-  [
-    '-m',
-    'cp',
-    '-r',
-    '.',
-    'gs://f08983-master-repo'
-  ]
+    # Step 4: Copy the files to the GCS bucket
+    - name: 'gcr.io/cloud-builders/gsutil'
+    args:
+      [
+        '-m',
+        'cp',
+        '-r',
+        '.',
+        'gs://f08983-master-repo'
+      ]
+      id: 'Copy to master repo'
 
 
 # Specify the logs bucket
