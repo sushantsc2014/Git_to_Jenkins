@@ -7,6 +7,13 @@ steps:
     git clone https://github.com/sushantsc2014/Git_to_Jenkins.git
     cd Git_to_Jenkins  
     git checkout feature1
+    git checkout master
+    git pull origin master
+    echo "merging"
+    git merge feature1
+    git add .
+    git commit -m "merged feature1 with master branch"
+    git push
   id: 'To check conflicts'
 
 # Specify the logs bucket
