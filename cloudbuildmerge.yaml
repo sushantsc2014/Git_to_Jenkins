@@ -54,7 +54,7 @@ steps:
         '-m',
         'cp',
         '-r',
-        '.',
+        '/git_master/',
         'gs://f08983-master-repo'
       ]
     id: 'Copy to master repo'
