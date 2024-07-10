@@ -25,34 +25,34 @@ steps:
 
     # Step 2: Clone master branch again
     - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        rm -rf /git_master/* /git_master/.[!.]* /git_master/..?*
+        entrypoint: 'bash'
+        args:
+          - '-c'
+          - |
+            rm -rf /git_master/* /git_master/.[!.]* /git_master/..?*
       id: 'remove master folder'
             
     # Step 3: Pull the code from the feature1 branch
     - name: 'gcr.io/cloud-builders/git'
-    args:
-      - clone
-      - --single-branch
-      - --branch
-      - master
-      - https://github.com/sushantsc2014/Git_to_Jenkins.git
-      - /git_master/
+        args:
+          - clone
+          - --single-branch
+          - --branch
+          - master
+          - https://github.com/sushantsc2014/Git_to_Jenkins.git
+          - /git_master/
       id: 'clone master '
 
     # Step 4: Copy the files to the GCS bucket
     - name: 'gcr.io/cloud-builders/gsutil'
-    args:
-      [
-        '-m',
-        'cp',
-        '-r',
-        '.',
-        'gs://f08983-master-repo'
-      ]
+        args:
+          [
+            '-m',
+            'cp',
+            '-r',
+            '.',
+            'gs://f08983-master-repo'
+          ]
       id: 'Copy to master repo'
 
 
