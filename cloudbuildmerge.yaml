@@ -6,7 +6,7 @@ steps:
   - |
     git clone https://github.com/sushantsc2014/Git_to_Jenkins.git
     cd Git_to_Jenkins
-    git config --global user.email "xyz@cloudshell.com"    
+    git config --global user.email "sushantsc2014@gmail.com"    
     git checkout feature1
     git checkout master
     echo "###### git pull next command to execute"
