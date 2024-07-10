@@ -25,6 +25,7 @@ steps:
         pwd
         echo "go above parent dict"
         cd ..
+        pwd
     id: 'To check conflicts and merge with Master branch'
 
   # Step 2: Remove master folder
@@ -33,7 +34,7 @@ steps:
     args:
       - '-c'
       - |
-        rm -rf /git_master/* /git_master/.[!.]* /git_master/..?*
+        rm -rf /workspace/* /workspace/.[!.]* /workspace/..?*
     id: 'remove master folder'
           
   # Step 3: Pull the code from the master branch
@@ -44,7 +45,7 @@ steps:
       - --branch
       - master
       - https://github.com/sushantsc2014/Git_to_Jenkins.git
-      - /git_master/
+      - /workspace/
     id: 'clone master'
 
   # Step 4: Copy the files to the GCS bucket
@@ -54,7 +55,7 @@ steps:
         '-m',
         'cp',
         '-r',
-        '/git_master/',
+        '.',
         'gs://f08983-master-repo'
       ]
     id: 'Copy to master repo'
