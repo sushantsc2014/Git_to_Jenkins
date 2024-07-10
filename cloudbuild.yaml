@@ -15,7 +15,7 @@ steps:
       - --branch
       - feature1
       - https://github.com/sushantsc2014/Git_to_Jenkins.git
-      - /workspace/repo
+      - /workspace/
 
   # Step 3: Copy the files to the GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
