@@ -4,12 +4,9 @@ steps:
   args:
   - '-c'
   - |
-    GITHUB_PAT=${_GITHUB_PAT}
     git config --global credential.helper store
-    echo "https://username:${GITHUB_PAT}@github.com" > ~/.git-credentials
-    
-    
-    git clone https://username:${GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
+    echo "https://username:${_GITHUB_PAT}@github.com" > ~/.git-credentials
+    git clone https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
     cd Git_to_Jenkins
     git config --global user.email "xyz@cloudshell.com"    
     git checkout feature1
@@ -22,7 +19,7 @@ steps:
     echo "###### merging next step"
     git commit -m "merged feature1 with master branch"
     echo "###### pushing next step"
-    git push https://username:${GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
+    git push https://username:${_GITHUB_PAT}@github.com/sushantsc2014/Git_to_Jenkins.git
   id: 'To check conflicts'
 
 # Specify the logs bucket
