@@ -14,7 +14,9 @@ steps:
     echo "merging"
     git merge feature1
     git add .
+    echo "###### merging next step"
     git commit -m "merged feature1 with master branch"
+    echo "###### pushing next step"
     git push
   id: 'To check conflicts'
 
