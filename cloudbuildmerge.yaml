@@ -60,5 +60,10 @@ steps:
       ]
     id: 'Copy to master repo'
 
+  # Step 5: trigger next build
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--config=cloudbuild-b.yaml']
+    id: 'trigger next build'
+
 # Specify the logs bucket
 logsBucket: 'gs://etl-demo-dataproc-temp-f08983'
