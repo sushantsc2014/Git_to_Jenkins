@@ -62,7 +62,7 @@ steps:
 
   # Step 5: trigger next build
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['builds', 'triggers', 'run', 'master-to-composer-dag-bucket', '--branch=master']
+    args: ['builds', 'triggers', 'run', 'master-to-composer-dag-bucket','region=us-central1', '--branch=master']
     id: 'trigger next build'
 
 # Specify the logs bucket
