@@ -7,7 +7,16 @@ steps:
       - |
         echo "hellow dependnacy build"
     id: 'To check dependancies'
-
+    
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "copy start"
+        gcloud storage cp -r gs://f08983-master-repo/* gs://f08983-composer-bucket
+        echo "copy done"       
+    id: "Copy from prod bucke to composer bucket"
 # Specify the logs bucket
 logsBucket: 'gs://etl-demo-dataproc-temp-f08983'
 # Wait for Build A to complete before triggering Build B
