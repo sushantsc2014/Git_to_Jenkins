@@ -62,7 +62,7 @@ steps:
 
   # Step 5: trigger next build
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['builds', 'submit', '--config=cloudbuild-b.yaml']
+    args: ['builds', 'submit', '--config=cloudbuilddepend.yaml']
     id: 'trigger next build'
 
 # Specify the logs bucket
