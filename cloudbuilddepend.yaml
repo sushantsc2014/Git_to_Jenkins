@@ -17,6 +17,10 @@ steps:
         gcloud storage cp -r gs://f08983-master-repo/* gs://f08983-composer-bucket
         echo "copy done"       
     id: "Copy from prod bucke to composer bucket"
+    
+  - name: gcr.io/cloud-builders/gsutil
+    args: ['storage', 'cp', '-r', 'gs://f08983-master-repo/*','gs://f08983-composer-bucket']   
+    id: "Copy from prod bucke to composer bucket: 2nd copy TEST"
 # Specify the logs bucket
 logsBucket: 'gs://etl-demo-dataproc-temp-f08983'
 # Wait for Build A to complete before triggering Build B
